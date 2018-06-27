@@ -1,23 +1,37 @@
 # spidy 2.0
 
-This will be the second version of the spidy Web Crawler.
+This will be the second version of the
+[spidy Web Crawler](https://github.com/rivermont/spidy).
 
-It will build on the framework of version 1 but will mostly be written
-from scratch.
+It will build on the ideas and basic code of version 1 but will mostly
+be written from scratch.
 
 ![cover.png](./cover.png)
-
 
 # Index
 
   - [Top](#spidy-2-0)
   - [Index](#index)
+  - [Usage](#usage)
   - [Notes](#notes)
 
 
 ***
 
+## Usage
+Command arguments coming soon, but for now simple
 
+> python3 spidy/crawler.py
+
+or
+
+> ./spidy/crawler.py
+
+
+***
+
+The following was written completely separately from the current code
+and the two have no correlation, though they share common concepts.
 
 ## Notes
 

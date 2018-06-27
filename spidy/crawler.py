@@ -25,7 +25,7 @@ import resource
 
 
 # Setup
-logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.WARNING)
 
 parser = argparse.ArgumentParser(
     description="Crawls the web and creates a connection map of the internet."
@@ -93,6 +93,7 @@ def get_full_time():
 
 # Regex
 url_exp = r'''((?:https?|ftp):\/\/(?:www\.)?(?:(?:-|[0-9]|[A-Z]|[a-z])+\.)+(?:(?:[0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])com|org|edu|gov|uk|net|ca|de|jp|fr|au|us|ru|ch|it|nl|se|no|es|mil|fi|cn|br|be|at|info|pl|dk|cz|cl|hu|nz|il|ie|za|tw|kr|mx|gr|ar|co|ly|gl)(?:[\/]|[\-\?\+\=\_\&\%\#~\.]|[0-9]|[A-Z]|[a-z])+)'''
+# url_exp = r'''(?:(?:https?|ftp):\/\/)?(?:www\.)?(?:(?:-|[0-9]|[A-Z]|[a-z])+\.)+(?:(?:[0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])|com|org|edu|gov|uk|net|ca|de|jp|fr|au|us|ru|ch|it|nl|se|no|es|mil|fi|cn|br|be|at|info|pl|dk|cz|cl|hu|nz|il|ie|za|tw|kr|mx|gr|ar|co|ly|gl)(?:[\/]|[\-\?\+\=\_\&\%\#~\.]|[0-9]|[A-Z]|[a-z])+'''
 dom_exp = r'''(?:https?:\/\/(?:www\.)?)((?:(?:-|[0-9]|[A-Z]|[a-z])+\.)+(?:[0-9]|[A-Z]|[a-z])+)'''
 mime_exp = r'''(?:application|audio|font|image|message|model|multipart|text|video|plain|binary)\/(?:(?:[a-z]|[A-Z]|[0-9])+|[\.\+-])+'''
 
@@ -212,7 +213,7 @@ def get_uid(string):
     return sha256(s).hexdigest()
 
 
-def crop_urls(connections_required=25):
+def crop_urls(connections_required=10):
     """Returns a dictionary made from global ids,
     with the same keys but values have been cropped to the subdomain level."""
     result = {}
@@ -230,7 +231,7 @@ def crop_urls(connections_required=25):
 def make_graph():
     logging.debug('Creating graph...')
     mg = nx.Graph()
-    plt.figure(figsize=(36, 36))
+    plt.figure(figsize=(16, 16))
 
     logging.debug('Adding content to graph...')
     for obj in data:
@@ -247,7 +248,7 @@ def make_graph():
             )
 
     logging.info('Saving the graph...')
-    plt.savefig('graphs/graph_{0}.png'.format(get_time()), format="PNG")
+    plt.savefig('../graphs/graph_{0}.png'.format(get_time()), format="PNG")
     # logging.info('Displaying the graph...')
     # plt.show()
 
