@@ -1,0 +1,22 @@
+language: python
+
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.5-dev"
+  - "3.6"
+  - "3.6-dev"
+#  - "3.7-dev"
+#  - "nightly"
+
+# Install dependencies
+install:
+  - pip3 install -r requirements.txt
+
+# Run all tests
+script:
+  - make
+  # Test PyPI package
+  # - pip3 install spidy-web-crawler
+  # - pip3 show spidy-web-crawler | grep Version
